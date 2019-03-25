@@ -1,0 +1,5 @@
+stages:
+  build:
+    node_label: python
+    steps:
+      - make test

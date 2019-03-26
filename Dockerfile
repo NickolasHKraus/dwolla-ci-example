@@ -36,8 +36,8 @@ RUN make test
 RUN make dist
 
 # create virtual environment for runtime
-RUN virtualenv /usr/local/dwolla_ci_example \
-    && . /usr/local/dwolla_ci_example/bin/activate \
+RUN virtualenv /usr/local/dwolla_ci_python_example \
+    && . /usr/local/dwolla_ci_python_example/bin/activate \
     && pip3 install --no-index --find-links=/wheels dist/dwolla*.tar.gz
 
 
@@ -45,7 +45,7 @@ RUN virtualenv /usr/local/dwolla_ci_example \
 FROM base as runtime
 
 # copy executable from build and put it in PATH
-COPY --from=build /usr/local/dwolla_ci_example /usr/local/dwolla_ci_example
-ENV PATH="/usr/local/dwolla_ci_example/bin:${PATH}"
+COPY --from=build /usr/local/dwolla_ci_python_example /usr/local/dwolla_ci_python_example
+ENV PATH="/usr/local/dwolla_ci_python_example/bin:${PATH}"
 
-ENTRYPOINT ["dwolla_ci_example"]
+ENTRYPOINT ["dwolla_ci_python_example"]

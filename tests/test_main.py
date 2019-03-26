@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""Tests for `dwolla_ci_example` package."""
+"""Tests for `dwolla_ci_python_example` package."""
 
 
 import unittest
 from click.testing import CliRunner
 
-from dwolla_ci_example import cli
+from dwolla_ci_python_example import cli
 
 
 class TestDwollaCiExample(unittest.TestCase):
-    """Tests for `dwolla_ci_example` package."""
+    """Tests for `dwolla_ci_python_example` package."""
 
     def test_command_line_interface(self):
         """Test the CLI."""

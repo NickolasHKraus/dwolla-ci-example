@@ -50,13 +50,13 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint: ## check style with flake8
-	flake8 dwolla_ci_example tests
+	flake8 dwolla_ci_python_example tests
 
 test: ## run tests quickly with the default Python
 	python setup.py test
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source dwolla_ci_example setup.py test
+	coverage run --source dwolla_ci_python_example setup.py test
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html

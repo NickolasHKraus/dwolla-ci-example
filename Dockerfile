@@ -1,10 +1,10 @@
-# STAGE 0: Update apk
+# Stage 0: Update apk
 FROM python:3.7.2-alpine3.9 as base
 
 RUN apk update && apk upgrade
 
 
-# STAGE 1: Add binaries for use during build
+# Stage 1: Add binaries for use during build
 FROM base as build-base
 
 RUN apk add --no-cache curl make zip

@@ -44,6 +44,8 @@ RUN virtualenv /usr/local/dwolla_ci_python_example \
 # Stage 4: Build runtime
 FROM base as runtime
 
+LABEL maintainer="NickolasHKraus <NickHKraus@gmail.com>"
+
 # copy executable from build and put it in PATH
 COPY --from=build /usr/local/dwolla_ci_python_example /usr/local/dwolla_ci_python_example
 ENV PATH="/usr/local/dwolla_ci_python_example/bin:${PATH}"

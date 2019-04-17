@@ -2,4 +2,12 @@ stages:
   build:
     node_label: python
     steps:
-      - make test
+      - echo "build"
+  publish:
+    node_label: python
+    steps:
+      - echo "publish"
+  deploy:
+    node_label: python
+    steps:
+      - echo "deploy"

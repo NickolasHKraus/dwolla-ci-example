@@ -2,12 +2,21 @@ stages:
   build:
     node_label: python
     steps:
-      - echo "build"
+      - python setup.py test
   publish:
-    node_label: python
+    node_label: kaniko-deployer
     steps:
-      - echo "publish"
+      - |
+        IMAGE_NAME=nickolashkraus/dwolla-ci-python-example && \
+        TAG=$(git rev-parse HEAD) && \
+        export DOCKER_CONFIG=/kaniko/.docker && \
+        /kaniko/executor \
+          --context $(pwd) \
+          --dockerfile $(pwd)/Dockerfile \
+          --destination $IMAGE_NAME:$TAG \
+          --destination $IMAGE_NAME:latest \
+          --force
   deploy:
-    node_label: python
+    node_label: jetstream-deployer
     steps:
-      - echo "deploy"
+      - echo "Nothing to deploy!"

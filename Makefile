@@ -1,6 +1,9 @@
 .PHONY: clean clean-test clean-pyc clean-build help
 .DEFAULT_GOAL := help
 
+IMAGE_NAME := "nickolashkraus/dwolla-ci-python-example"
+TAG := $(shell git rev-parse HEAD)
+
 define BROWSER_PYSCRIPT
 import os, webbrowser, sys
 
@@ -71,3 +74,15 @@ dist: clean ## builds source and wheel package
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
+
+.PHONY: publish
+publish:
+	@export DOCKER_CONFIG=/kaniko/.docker/; \
+	aws s3 cp s3://dwolla-secrets-us-west-2/jenkins/docker/config.json /kaniko/.docker/config.json \
+	--region us-west-2; \
+	/kaniko/executor \
+		--context="$$(pwd)" \
+		--dockerfile="$$(pwd)/Dockerfile" \
+		--destination="$(IMAGE_NAME):$(TAG)" \
+		--destination="$(IMAGE_NAME):latest" \
+		--force

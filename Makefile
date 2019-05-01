@@ -1,7 +1,7 @@
 .PHONY: clean clean-test clean-pyc clean-build help
 .DEFAULT_GOAL := help
 
-IMAGE_NAME := "nickolashkraus/dwolla-ci-python-example"
+IMAGE_NAME := "docker.dwolla.net/nkraus/dwolla-ci-python-example"
 TAG := $(shell git rev-parse HEAD)
 
 define BROWSER_PYSCRIPT
